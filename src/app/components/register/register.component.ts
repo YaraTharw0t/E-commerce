@@ -1,5 +1,7 @@
+import { AuthService } from './../../shared/services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -9,12 +11,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent {
 
+  constructor (private _AuthService :AuthService){}
+
 registerForm:FormGroup = new FormGroup(
   {
     name:new FormControl(null,[Validators.required,Validators.minLength(3), Validators.maxLength(20)] ),
     email:new FormControl(null,[Validators.required, Validators.email] ),
-    password:new FormControl(null,[Validators.pattern(/^[A-Z][a-z-0-9]{6,20}$/)] ),
-    rePassword:new FormControl(null,[Validators.pattern(/^[A-Z][a-z-0-9]{6,20}$/)] ),
+    password:new FormControl(null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)] ),
+    rePassword:new FormControl(null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)] ),
     phone:new FormControl(null, [Validators.pattern(/^01[0125][0-9]{8}$/)]),
 
 
@@ -22,7 +26,23 @@ registerForm:FormGroup = new FormGroup(
 )
 
 handelform():void{
-console.log(this.registerForm.value);
+
+
+this._AuthService.setRegister(this.registerForm.value).subscribe({
+  next:(respose)=>{
+    console.log(respose);
+    
+
+  },
+  error:(err)=>{
+    console.log(err);
+    
+
+  }
+
+})
+
+
 
 
 }
