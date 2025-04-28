@@ -1,0 +1,68 @@
+<section class="mt-4 bg-light rounded p-4">
+  <h1 class="text-capitalize">register now</h1>
+  <form action="" [formGroup]="registerForm" (ngSubmit)="handelform()">
+    <div class="mt-3">
+      <label for="name">name :</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+      "
+    >
+      <p *ngIf="registerForm.get('name')?.getError('required')">
+        please enter your name
+      </p>
+      <p *ngIf="registerForm.get('name')?.getError('minlength')">
+        must be at least 3 chars
+      </p>
+      <p *ngIf="registerForm.get('name')?.getError('maxlength')">
+        must be at largest 20 chars
+      </p>
+    </div>
+
+    <div class="mt-3">
+      <label for="email">email :</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+      />
+    </div>
+    <div class="mt-3">
+      <label for="password">password :</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        formControlName="password"
+      />
+    </div>
+    <div class="mt-3">
+      <label for="repassword">rePassword :</label>
+      <input
+        type="password"
+        id="repassword"
+        class="form-control"
+        formControlName="rePassword"
+      />
+    </div>
+    <div class="my-3">
+      <label for="phone">phone :</label>
+      <input
+        type="tel"
+        id="phone"
+        class="form-control"
+        formControlName="phone"
+      />
+    </div>
+    <button class="btn-main ms-auto d-block text-capitalize">register</button>
+  </form>
+</section>
