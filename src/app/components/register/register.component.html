@@ -112,7 +112,9 @@
       [disabled]="registerForm.invalid"
       class="btn-main ms-auto d-block text-capitalize"
     >
-      register
+      register <span *ngIf="isLoding"><i class="fa-solid fa-spinner"></i></span>
     </button>
+
+    <p class="alert alert-danger" *ngIf="errMsdg">{{ errMsdg }}</p>
   </form>
 </section>

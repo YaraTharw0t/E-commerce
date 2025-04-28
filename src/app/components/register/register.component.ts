@@ -1,6 +1,7 @@
 import { AuthService } from './../../shared/services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 
@@ -10,8 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  errMsdg:string = "";
+  isLoding:boolean =false
 
-  constructor (private _AuthService :AuthService){}
+  constructor (private _AuthService :AuthService , private _Router:Router){}
 
 registerForm:FormGroup = new FormGroup(
   {
@@ -27,20 +30,38 @@ registerForm:FormGroup = new FormGroup(
 
 handelform():void{
 
+  this.isLoding = true;
 
-this._AuthService.setRegister(this.registerForm.value).subscribe({
+ 
+  const userData = this.registerForm.value
+
+  if(this.registerForm.valid==true) {
+
+    
+this._AuthService.setRegister(userData).subscribe({
   next:(respose)=>{
-    console.log(respose);
+    if(respose.message == "success"){
+      this._Router.navigate(['login'])
+      this.isLoding = false
+    }
+
+  ;
     
 
   },
   error:(err)=>{
-    console.log(err);
+    this.errMsdg = err.error.message
+    this.isLoding=false;
+
     
 
   }
 
 })
+
+
+  }
+
 
 
 
