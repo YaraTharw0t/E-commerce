@@ -65,3 +65,10 @@ form label {
 button:disabled {
   background-color: #ccc;
 }
+footer {
+  height: 100vh;
+}
+
+.rating {
+  color: #ffc908;
+}

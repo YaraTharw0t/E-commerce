@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
     errMsdg:string = "";
     isLoding:boolean =false
+    userData:string = "" ;
   
     constructor (private _AuthService :AuthService , private _Router:Router){}
   
@@ -21,7 +22,7 @@ export class LoginComponent {
       password:new FormControl(null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)] ),
     
     
-  
+
   
     }
   )
@@ -39,8 +40,12 @@ export class LoginComponent {
   this._AuthService.setLogin(userData).subscribe({
     next:(respose)=>{
       if(respose.message == "success"){
+        localStorage.setItem('token', respose.token)
+         this._AuthService.getToken()
         this._Router.navigate(['home'])
         this.isLoding = false
+      
+        
       }
   
     ;
