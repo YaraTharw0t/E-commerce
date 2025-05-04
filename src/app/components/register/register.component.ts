@@ -1,6 +1,6 @@
 import { AuthService } from './../../shared/services/auth.service';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -10,20 +10,19 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent  {
   errMsdg:string = "";
   isLoding:boolean =false
 
-  constructor (private _AuthService :AuthService , private _Router:Router){}
+  constructor (private _AuthService :AuthService , private _Router:Router ,private _FormBuilder:FormBuilder){}
 
-registerForm:FormGroup = new FormGroup(
+registerForm:FormGroup = this._FormBuilder.group(
   {
-    name:new FormControl(null,[Validators.required,Validators.minLength(3), Validators.maxLength(20)] ),
-    email:new FormControl(null,[Validators.required, Validators.email] ),
-    password:new FormControl(null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)] ),
-    rePassword:new FormControl(null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)] ),
-    phone:new FormControl(null, [Validators.pattern(/^01[0125][0-9]{8}$/)]),
-
+    name:[null,[Validators.required,Validators.minLength(3), Validators.maxLength(20)]],
+    email:[null,[Validators.required, Validators.email]],
+    password:[null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)]],
+    rePassword:[null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)]],
+    phone:[null, [Validators.pattern(/^01[0125][0-9]{8}$/)]],
 
   }
 )
@@ -61,7 +60,10 @@ this._AuthService.setRegister(userData).subscribe({
 
 
   }
-
+ 
+  else{
+    this.registerForm.markAllAsTouched()
+  }
 
 
 

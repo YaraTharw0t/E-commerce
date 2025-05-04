@@ -4,6 +4,7 @@
     <div class="mt-3">
       <label for="name">name :</label>
       <input
+        #inputName
         type="text"
         id="name"
         class="form-control"
@@ -13,7 +14,8 @@
     <div
       class="alert alert-danger"
       *ngIf="
-        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+        registerForm.get('name')?.errors &&
+        (registerForm.get('name')?.touched || inputName.value.length > 0)
       "
     >
       <p *ngIf="registerForm.get('name')?.getError('required')">
@@ -30,6 +32,7 @@
     <div class="mt-3">
       <label for="email">email :</label>
       <input
+        #inputEmail
         type="email"
         id="email"
         class="form-control"
@@ -39,7 +42,8 @@
     <div
       class="alert alert-danger"
       *ngIf="
-        registerForm.get('email')?.errors && registerForm.get('email')?.touched
+        registerForm.get('email')?.errors &&
+        (registerForm.get('email')?.touched || inputEmail.value.length > 0)
       "
     >
       <p *ngIf="registerForm.get('email')?.getError('required')">
@@ -52,6 +56,7 @@
     <div class="mt-3">
       <label for="password">password :</label>
       <input
+        #inputPassword
         type="password"
         id="password"
         class="form-control"
@@ -62,7 +67,8 @@
       class="alert alert-danger"
       *ngIf="
         registerForm.get('password')?.errors &&
-        registerForm.get('password')?.touched
+        (registerForm.get('password')?.touched ||
+          inputPassword.value.length > 0)
       "
     >
       <p *ngIf="registerForm.get('password')?.getError('pattern')">
@@ -72,6 +78,7 @@
     <div class="mt-3">
       <label for="repassword">rePassword :</label>
       <input
+        #inputRepassword
         type="password"
         id="repassword"
         class="form-control"
@@ -82,7 +89,8 @@
       class="alert alert-danger"
       *ngIf="
         registerForm.get('rePassword')?.errors &&
-        registerForm.get('rePassword')?.touched
+        (registerForm.get('rePassword')?.touched ||
+          inputRepassword.value.length > 0)
       "
     >
       <p *ngIf="registerForm.get('rePassword')?.getError('pattern')">
@@ -92,6 +100,7 @@
     <div class="my-3">
       <label for="phone">phone :</label>
       <input
+        #inputPhone
         type="tel"
         id="phone"
         class="form-control"
@@ -101,17 +110,15 @@
     <div
       class="alert alert-danger"
       *ngIf="
-        registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+        registerForm.get('phone')?.errors &&
+        (registerForm.get('phone')?.touched || inputPhone.value.length > 0)
       "
     >
       <p *ngIf="registerForm.get('phone')?.getError('pattern')">
         "accept only egypt phone numbers"
       </p>
     </div>
-    <button
-      [disabled]="registerForm.invalid"
-      class="btn-main ms-auto d-block text-capitalize"
-    >
+    <button class="btn-main ms-auto d-block text-capitalize">
       register <span *ngIf="isLoding"><i class="fa-solid fa-spinner"></i></span>
     </button>
 

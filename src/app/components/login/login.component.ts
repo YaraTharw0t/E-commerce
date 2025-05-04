@@ -1,6 +1,6 @@
 import { AuthService } from './../../shared/services/auth.service';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 ;
 
@@ -14,18 +14,17 @@ export class LoginComponent {
     isLoding:boolean =false
     userData:string = "" ;
   
-    constructor (private _AuthService :AuthService , private _Router:Router){}
-  
-  loginForm:FormGroup = new FormGroup(
-    {
-      email:new FormControl(null,[Validators.required, Validators.email] ),
-      password:new FormControl(null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)] ),
-    
-    
+    constructor (private _AuthService :AuthService , private _Router:Router,private _FormBuilder:FormBuilder){}
+ 
+ loginForm:FormGroup = this._FormBuilder.group(
+  {
+    email:[null,[Validators.required, Validators.email]],
+    password:[null,[Validators.pattern(/^[A-Z][a-z0-9]{6,20}$/)]],
 
-  
-    }
-  )
+   
+
+  }
+)
   
   handelform():void{
   
@@ -63,6 +62,9 @@ export class LoginComponent {
   })
   
   
+    }
+    else{
+      this.loginForm.markAllAsTouched()
     }
   
   
