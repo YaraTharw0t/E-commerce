@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 
@@ -9,8 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor( private _HttpClient:HttpClient) { }
+  constructor( private _HttpClient:HttpClient, private _Router:Router) { }
 
+   userData:any=''
 
   setRegister(userdata:object):Observable<any>{
 
@@ -26,12 +28,27 @@ export class AuthService {
 
   }
 
+
+  logOut():void {
+
+localStorage.removeItem('token')
+this._Router.navigate(['login'])
+
+
+  }
+
+
   getToken(){
     const encode = localStorage.getItem('token')
 
     if(encode!=null){
       const decode = jwtDecode(encode)
       console.log(decode);
+
+      this.userData = decode
+
+
+      
       
 
 

@@ -17,6 +17,10 @@ body {
 .rating-color {
   color: var(--rating-color);
 }
+
+.shopping-color {
+  color: #0aad0a;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -60,6 +64,23 @@ a:hover {
   color: white;
   padding: 6px;
 }
+
+.btn-sec {
+  background-color: var(--main-color);
+  border-radius: 50%;
+  /* color: white; */
+  font-weight: 600;
+  position: absolute;
+  left: 70%;
+  bottom: 80%;
+  width: 20px;
+  height: 20px;
+  border: white 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 form label {
   font-weight: 700;
 }
@@ -68,8 +89,4 @@ button:disabled {
 }
 footer {
   height: 100vh;
-}
-
-.rating {
-  color: #ffc908;
 }

@@ -26,10 +26,13 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link text-capitalize"
+            class="nav-link text-capitalize position-relative"
             routerLink="cart"
             routerLinkActive="bg-main"
-            >cart</a
+            >cart
+            <button class="btn-sec">
+              {{ cartd.numOfCartItems }}
+            </button></a
           >
         </li>
         <li class="nav-item">

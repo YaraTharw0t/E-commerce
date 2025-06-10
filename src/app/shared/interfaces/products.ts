@@ -3,7 +3,10 @@ export interface Products {
     imageCover:string;
     price:number;
     category:category;
-    ratingsAverage:number
+    ratingsAverage:number;
+    _id:string;
+    description:string;
+    images:string;
 }
 
 

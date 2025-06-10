@@ -15,9 +15,16 @@ import { AuthComponent } from './components/auth/auth.component';
 import { BlankComponent } from './components/blank/blank.component';
 import { AuthNavbarComponent } from './components/auth-navbar/auth-navbar.component';
 import { BlankNavbarComponent } from './components/blank-navbar/blank-navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule} from '@angular/common/http';
 import { ProductDetailsComponent } from './components/product-details/product-details.component'
+import{BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CuttextPipe } from './shared/pipes/cuttext.pipe';
+import { SearchPipe } from './shared/pipes/search.pipe';
+import { ToastrModule } from 'ngx-toastr';
+import { CheackoutComponent } from './components/cheackout/cheackout.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +43,25 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     BlankComponent,
     AuthNavbarComponent,
     BlankNavbarComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CuttextPipe,
+    SearchPipe,
+    CheackoutComponent,
+    AllordersComponent    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    CarouselModule,
+    FormsModule,
+     ToastrModule.forRoot(),
+
+    
+    
 
   ],
   providers: [],

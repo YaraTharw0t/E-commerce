@@ -1,29 +1,100 @@
+<section>
+  <div class="row g-0">
+    <div class="col-md-10">
+      <owl-carousel-o [options]="mainSlider">
+        <ng-template carouselSlide
+          ><img
+            src="./assets/images/main-slider-1.jpeg"
+            class="w-100"
+            height="400"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img
+            src="./assets/images/main-slider-2.jpeg"
+            class="w-100"
+            height="400"
+            alt=""
+        /></ng-template>
+        <ng-template carouselSlide
+          ><img
+            src="./assets/images/main-slider-3.jpeg"
+            class="w-100"
+            height="400"
+            alt=""
+        /></ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="col-md-2">
+      <img
+        src="../../../assets/images/main-slider-1.jpeg"
+        height="200"
+        class="w-100"
+        alt=""
+      />
+      <img
+        src="../../../assets/images/main-slider-2.jpeg"
+        height="200"
+        class="w-100"
+        alt=""
+      />
+    </div>
+  </div>
+</section>
+
+<section class="py-4">
+  <div class="container">
+    <owl-carousel-o [options]="categoryOptions">
+      <ng-container *ngFor="let item of categories">
+        <ng-template carouselSlide>
+          <div>
+            <img [src]="item.image" height="270" [alt]="item.name" />
+            <h3 class="h5">{{ item.name }}</h3>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</section>
+
 <section class="text-capitalize">
   <div class="container">
+    <h2>products</h2>
+
+    <input
+      type="search"
+      class="form-control mx-auto w-50 my-3"
+      placeholder="search......"
+      [(ngModel)]="searchTerm"
+    />
     <div class="row g-4">
-      <h2>products</h2>
       <div
         class="col-sm-6 col-md-3 col-lg-3"
-        *ngFor="let product of products | slice : 0 : 18"
+        *ngFor="let product of products | search : searchTerm"
       >
         <div class="product">
-          <img
-            [src]="product.imageCover"
-            class="w-100"
-            [alt]="product.title"
-            [title]="product.title"
-          />
-          <h4 class="h6 text-main">{{ product.category.name }}</h4>
-          <h4 class="h6">{{ product.title }}</h4>
-          <div class="d-flex justify-content-around align-items-center">
-            <span>{{ product.price }}</span>
-            <div>
-              <i class="fa-solid fa-star rating"></i>
-              <span>{{ product.ratingsAverage }}</span>
+          <div [routerLink]="['/details', product._id]">
+            <img
+              [src]="product.imageCover"
+              class="w-100"
+              [alt]="product.title"
+              [title]="product.title"
+            />
+            <h4 class="h6 text-main">{{ product.category.name }}</h4>
+            <h4 class="h6">{{ product.title | cuttext : 3 }}</h4>
+            <div class="d-flex justify-content-around align-items-center">
+              <span>{{ product.price }}</span>
+              <div>
+                <i class="fa-solid fa-star rating-color"></i>
+                <span>{{ product.ratingsAverage }}</span>
+              </div>
             </div>
           </div>
+
           <div class="d-flex justify-content-center align-items-center">
-            <button class="btn btn-main w-50">add to cart</button>
+            <button (click)="addCart(product._id)" class="btn btn-main w-50">
+              add to cart
+            </button>
           </div>
         </div>
       </div>

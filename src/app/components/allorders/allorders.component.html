@@ -1,0 +1,26 @@
+<section class="mx-auto rounded-3 bg-main-light p-3 my-2 w-50">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>
+      you order
+      <span><i class="fa-solid fa-cart-shopping shopping-color"></i></span>
+    </h1>
+    <h2></h2>
+  </div>
+
+  <div *ngFor="let order of productsUser">
+    <h3>number of order : {{ order.id }}</h3>
+    <p>totalprice : {{ order.totalOrderPrice }}</p>
+
+    <div class="col-md-4">
+      <div class="row border-bottom" *ngFor="let item of order.cartItems">
+        <div class="col-md-4 my-2">
+          <img [src]="item.product.imageCover" class="w-75" alt="" />
+        </div>
+        <div class="col-md-8">
+          <h4 class="h6">{{ item.product.title | slice : 0 : 10 }}</h4>
+          <h4 class="h6">price {{ item.price }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,1 +1,54 @@
-<p>cart works!</p>
+<section class="mx-auto rounded-3 bg-main-light p-3 my-2 w-75">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>
+      shop cart
+      <span><i class="fa-solid fa-cart-shopping shopping-color"></i></span>
+    </h1>
+    <h2>total.items: {{ cartd.numOfCartItems }}</h2>
+  </div>
+
+  <div
+    class="row border-bottom my-3"
+    *ngFor="let item of cartDeatails.products"
+  >
+    <div class="col-md-2">
+      <img [src]="item.product.imageCover" class="w-100" alt="" />
+    </div>
+    <div class="col-md-10">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h4>{{ item.product.title }}</h4>
+          <p>price : {{ item.price }}</p>
+          <button class="btn" (click)="removeItem(item.product._id)">
+            <i class="fa-solid fa-trash"></i> remove
+          </button>
+        </div>
+
+        <div>
+          <button
+            class="btn border-success mx-3"
+            (click)="changeCount(item.product._id, item.count + 1)"
+          >
+            +
+          </button>
+
+          <span>{{ item.count }}</span>
+
+          <button
+            class="btn border-success mx-2"
+            (click)="changeCount(item.product._id, item.count - 1)"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center">
+    <h2>total : {{ cartDeatails.totalCartPrice | currency : "  EGP  " }}</h2>
+    <button class="btn-main" [routerLink]="['/checkOut', cartDeatails._id]">
+      checkout
+    </button>
+  </div>
+</section>

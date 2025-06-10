@@ -11,6 +11,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { authGuard } from './shared/guard/auth.guard';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CheackoutComponent } from './components/cheackout/cheackout.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
 
 const routes: Routes = [
   {path:'', component:BlankComponent, canActivate:[authGuard],   
@@ -20,6 +23,9 @@ const routes: Routes = [
     {path:'home' , component:HomeComponent},
     {path:'cart' , component:CartComponent},
     {path:'products' , component:ProductsComponent},
+    {path:'allorders', component:AllordersComponent}, 
+    {path:'checkOut/:id' , component:CheackoutComponent},
+    {path:'details/:id',component:ProductDetailsComponent},
     {path:'categories' , component:CategoriesComponent},
     {path:'brands' , component:BrandsComponent},
   ]},
