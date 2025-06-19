@@ -1,3 +1,4 @@
+import { SettingsModule } from './settings/settings.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './components/blank/blank.component';
@@ -21,6 +22,8 @@ const routes: Routes = [
 
     {path:'home' , redirectTo:'home',pathMatch:'full'},
     {path:'home' , component:HomeComponent},
+    {path:'setting' , loadChildren:()=>import('./settings/settings.module').then((m)=>m.SettingsModule)},
+
     {path:'cart' , component:CartComponent},
     {path:'products' , component:ProductsComponent},
     {path:'allorders', component:AllordersComponent}, 

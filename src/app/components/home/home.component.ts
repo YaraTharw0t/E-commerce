@@ -93,7 +93,7 @@ export class HomeComponent {
   addCart(id:string):void{
     this._CartService.addToCart(id).subscribe({
       next:(res)=>{
-        console.log(res);
+        this._CartService.cartNumber.next(res.numOfCartItems)
         this._ToastrService.success(res.message)
       },
        error:(err)=>{

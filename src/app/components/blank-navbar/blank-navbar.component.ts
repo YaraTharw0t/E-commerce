@@ -8,13 +8,34 @@ import { CartService } from 'src/app/shared/services/cart.service';
   templateUrl: './blank-navbar.component.html',
   styleUrls: ['./blank-navbar.component.css']
 })
-export class BlankNavbarComponent {
+export class BlankNavbarComponent  implements OnInit{
   constructor(private _router: Router , private _CartService:CartService, private _AuthService:AuthService){}
 
   
+ cartCount:number =0;
+  
+ngOnInit(): void {
+    this._CartService.cartNumber.subscribe({
+      next:(data)=>{
+        this.cartCount = data
+
+
+      }
 
   
+      
+      })
 
+      this._CartService.getUserCart().subscribe({
+        next:(res) =>{
+          this._CartService.cartNumber.next(res.numOfCartItems)
+
+        }
+      })
+
+
+
+}
 
 
   

@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   removeItem(id:string):void{
     this._CartService.removeCartItem(id).subscribe({
       next:(res) =>{
+        this._CartService.cartNumber.next(res.numOfCartItems)
         this.cartDeatails= res.data
       }
     })

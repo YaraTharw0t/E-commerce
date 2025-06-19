@@ -16,7 +16,7 @@ import { BlankComponent } from './components/blank/blank.component';
 import { AuthNavbarComponent } from './components/auth-navbar/auth-navbar.component';
 import { BlankNavbarComponent } from './components/blank-navbar/blank-navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import{HttpClientModule} from '@angular/common/http';
+import{HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ProductDetailsComponent } from './components/product-details/product-details.component'
 import{BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { CarouselModule } from 'ngx-owl-carousel-o';
@@ -25,6 +25,7 @@ import { SearchPipe } from './shared/pipes/search.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { CheackoutComponent } from './components/cheackout/cheackout.component';
 import { AllordersComponent } from './components/allorders/allorders.component';
+import { MyHttpInterceptor } from './my-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,9 @@ import { AllordersComponent } from './components/allorders/allorders.component';
     
 
   ],
-  providers: [],
+  providers: [
+  {provide:HTTP_INTERCEPTORS,useClass:MyHttpInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

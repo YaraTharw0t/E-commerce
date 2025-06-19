@@ -24,14 +24,7 @@
             >home</a
           >
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link text-capitalize position-relative"
-            routerLink="cart"
-            routerLinkActive="bg-main"
-            >cart
-          </a>
-        </li>
+
         <li class="nav-item">
           <a
             class="nav-link text-capitalize"
@@ -56,8 +49,44 @@
             >brands</a
           >
         </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            routerLink="/setting"
+          >
+            setting
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/setting/update"
+                >update password</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/setting/forget"
+                >forget password</a
+              >
+            </li>
+          </ul>
+        </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link text-capitalize position-relative"
+            routerLink="cart"
+          >
+            <i class="fa-solid fa-cart-shopping fa-xl text-main"></i>
+            <h6 class="badge bg-main position-absolute top-0 end-0 w-50">
+              {{ cartCount }}
+            </h6>
+          </a>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link"><i class="fa-brands fa-instagram"></i></a>
         </li>
